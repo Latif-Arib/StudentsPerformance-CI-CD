@@ -2,6 +2,7 @@ import sys
 import os
 from src.utils.exceptions import CustomException
 from src.utils.logger import logging
+from preprocess import Preprocess
 import pandas as pd 
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
@@ -59,3 +60,6 @@ class LoadData:
 if __name__ == '__main__':
        load_data = LoadData()
        train_data, test_data = load_data.start_loading()     
+       
+       preprocess = Preprocess()
+       X_train, X_test, y_train, y_test = preprocess.transform(train_data,test_data)

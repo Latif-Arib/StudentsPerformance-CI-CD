@@ -21,7 +21,7 @@ def save_model_or_data(object_to_save:Union[dict,object], filepath:str) -> None:
     try:
         with open(filepath,'wb') as f:
             dill.dump(object_to_save,f)
-            
+        logging.info('Model or data has been saved.')    
             
     except Exception as e:
         raise CustomException(e,sys)
@@ -41,7 +41,7 @@ def load_model_and_data(filepath:str) -> object:
           with open(filepath, 'rb') as file:
               return dill.loads(file)
           
-          
+          logging.info('Model or data has been loaded.')
           
       except Exception as e:
           raise CustomException(e, sys)    
