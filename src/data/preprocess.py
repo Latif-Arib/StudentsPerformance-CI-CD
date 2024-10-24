@@ -3,6 +3,7 @@ import os
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from sklearn.impute import SimpleImputer
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from src.utils.exceptions import CustomException
@@ -42,11 +43,11 @@ class Preprocess:
             categorical_features = train_data.select_dtypes(include='object').columns
             
             
-            numeric_pipeline = Pipeline([('scaler',StandardScaler())])
-            categorical_pipeline = Pipeline([('ohe',OneHotEncoder())])
+            numeric_pipeline = Pipeline([("imputer",SimpleImputer(strategy="median")),('scaler',StandardScaler())])
+            categorical_pipeline = Pipeline([("imputer",SimpleImputer(strategy="most_frequent")),('ohe',OneHotEncoder())])
             
-            ct = ColumnTransformer([('scaler',numeric_pipeline,numerical_features),
-                                    ('ohe',categorical_pipeline,categorical_features)])
+            ct = ColumnTransformer([('numeric_trans',numeric_pipeline,numerical_features),
+                                    ('categoric_trans',categorical_pipeline,categorical_features)])
             
             
             y_train = np.array(train_data['math score'])

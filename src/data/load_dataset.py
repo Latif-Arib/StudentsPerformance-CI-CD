@@ -3,6 +3,7 @@ import os
 from src.utils.exceptions import CustomException
 from src.utils.logger import logging
 from preprocess import Preprocess
+from src.models.train_model import TrainModel
 import pandas as pd 
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
@@ -63,3 +64,6 @@ if __name__ == '__main__':
        
        preprocess = Preprocess()
        X_train, X_test, y_train, y_test = preprocess.transform(train_data,test_data)
+       
+       train_model = TrainModel()
+       print(train_model.train(X_train, X_test, y_train, y_test))
