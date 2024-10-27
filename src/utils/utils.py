@@ -42,7 +42,7 @@ def load_model_and_data(filepath:str) -> object:
       
       try:
           with open(filepath, 'rb') as file:
-              return dill.loads(file)
+              return dill.load(file)
           
           logging.info('Model or data has been loaded.')
                     
