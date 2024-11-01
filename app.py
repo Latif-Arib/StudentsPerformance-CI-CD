@@ -10,7 +10,7 @@ app = FastAPI()
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-templates = Jinja2Templates(directory='template')
+templates = Jinja2Templates(directory='templates')
 
 class StudentData(BaseModel):
     gender: List[str]
@@ -46,10 +46,11 @@ async def submit_form(
     df = model.make_df(data.dict())
     prediction = model.predict(df)
     
+    
     # return {"message": "Form submitted successfully!", "prediction": prediction[0]}
     return templates.TemplateResponse('index.html',{
         'request':request,
-        'prediction': prediction[0]
+        'prediction': int(prediction[0])
     })
 
 

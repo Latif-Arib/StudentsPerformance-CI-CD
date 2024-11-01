@@ -8,6 +8,7 @@ body {
 
 .form-container {
     width: 50%;
+   
     margin: 20px auto;
     background-color: #fff;
     padding: 20px;
@@ -62,6 +63,15 @@ button:hover {
     background-color: #4cae4c;
 }
 
-.result_popup{
-    display: none;
+
+
+.popup-overlay{
+
+    width: 50%;
+    max-width: 25rem;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }

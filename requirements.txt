@@ -7,4 +7,5 @@ catboost
 xgboost
 fastapi[standard]
 uvicorn
+jinja2
 # -e .
