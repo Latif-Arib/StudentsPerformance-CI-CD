@@ -6,9 +6,9 @@ from fastapi.responses import HTMLResponse
 from typing import Optional, List
 from src.pipeline.predict_pipeline import Prediction
 
-app = FastAPI()
+application = FastAPI()
 
-app.mount("/static", StaticFiles(directory="static"), name="static")
+application.mount("/static", StaticFiles(directory="static"), name="static")
 
 templates = Jinja2Templates(directory='templates')
 
@@ -21,7 +21,7 @@ class StudentData(BaseModel):
     reading_score: List[int]
     writing_score: List[int]
 
-@app.post("/submit/")
+@application.post("/submit/")
 async def submit_form(
     request: Request,
     gender: list[str] = Form(...),
