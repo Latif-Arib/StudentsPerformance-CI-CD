@@ -21,6 +21,11 @@ class StudentData(BaseModel):
     reading_score: List[int]
     writing_score: List[int]
 
+@application.get('/')
+async def get_form(request: Request):
+    return templates.TemplateResponse('index.html',{'request':request})
+
+
 @application.post("/submit/")
 async def submit_form(
     request: Request,
