@@ -35,7 +35,7 @@ env:
   ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY_NAME }}           # set this to your Amazon ECR repository name
   ECS_SERVICE: mlservice                 # set this to your Amazon ECS service name
   ECS_CLUSTER: mlCluster                 # set this to your Amazon ECS cluster name
-  ECS_TASK_DEFINITION: arn:aws:ecs:us-east-1:061051230252:task-definition/mltask:1            # set this to the path to your Amazon ECS task definition
+  ECS_TASK_DEFINITION: ./task-definition.json            # set this to the path to your Amazon ECS task definition
                                          # file, e.g. .aws/task-definition.json
   CONTAINER_NAME: mlcontainer            # set this to the name of the container in the
                                          # containerDefinitions section of your task definition
@@ -81,7 +81,7 @@ jobs:
       id: task-def
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
-        task-definition: arn:aws:ecs:us-east-1:123456789012:task-definition/mltask:1
+        task-definition: ./task-definition.json
         container-name: ${{ env.CONTAINER_NAME }}
         image: ${{ steps.build-image.outputs.image }}
 
